@@ -62,7 +62,7 @@ public class ViewCharacter extends Activity implements MyRecyclerViewAdapter.Ite
         int cLength = charactersArray.length();
         int cCounter;
 
-        //Build The Question Objects
+        //Build The Adding Characters To The List
         for (cCounter = 0; cCounter < cLength; cCounter++) {
             try {
                 JSONObject character = charactersArray.getJSONObject(cCounter);
@@ -74,7 +74,7 @@ public class ViewCharacter extends Activity implements MyRecyclerViewAdapter.Ite
         viewCharactersOnList(characters);
     }
     private void viewCharactersOnList(ArrayList<JSONObject> characters){
-        // set up the RecyclerView
+        // setup the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvCharacter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new MyRecyclerViewAdapter(this, characters);

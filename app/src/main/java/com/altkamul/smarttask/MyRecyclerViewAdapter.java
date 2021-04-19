@@ -24,15 +24,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private ItemClickListener mClickListener;
     Context context = null;
 
-    // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<JSONObject> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
     }
-
-    // inflates the row layout from xml when needed
-
 
     @NonNull
     @Override
@@ -40,13 +36,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
     }
-
-    /*@Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
-            return new ViewHolder(view);
-        }*/
-    // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         JSONObject Character = mData.get(position);
@@ -66,14 +55,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     }
 
-    // total number of rows
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
-
-    // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView characterName;
         TextView species;
@@ -90,15 +76,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    // convenience method for getting data at click position
-    JSONObject getItem(int id) {
-        JSONObject Character = null;
-        try {
-            Character = mData.get(id);
-        }catch (Exception e){}
-        return Character;
     }
 
     // allows clicks events to be caught
